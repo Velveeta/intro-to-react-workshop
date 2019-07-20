@@ -1,0 +1,10 @@
+.button-container {
+  justify-content: flex-start;
+  position: sticky;
+  top: 70px;
+  width: 101px;
+}
+
+pre.code-example {
+  color: #fff;
+}

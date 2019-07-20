@@ -1,0 +1,10 @@
+header {
+  background-color: #fff;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+}
+
+.content {
+  padding: 10px;
+}

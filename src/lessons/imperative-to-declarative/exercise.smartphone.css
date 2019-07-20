@@ -1,0 +1,14 @@
+.tile {
+  background-color: #fff;
+  border-radius: 5px;
+  color: #000;
+}
+
+.tile > .row {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.tile + .tile {
+  margin-top: 10px;
+}

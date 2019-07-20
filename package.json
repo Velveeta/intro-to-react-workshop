@@ -1,0 +1,52 @@
+{
+  "name": "intro-to-react-workshop",
+  "version": "0.1.0",
+  "description": "A low level introduction to React and some of the most common concepts of component-driven development and testing.",
+  "main": "src/index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Velveeta/intro-to-react-workshop.git"
+  },
+  "author": "Richard Lindsey",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/Velveeta/intro-to-react-workshop/issues"
+  },
+  "homepage": "https://github.com/Velveeta/intro-to-react-workshop#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "cypress": "^3.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-dom": "^16.8.6",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.1",
+    "react-syntax-highlighter": "^11.0.1",
+    "redux": "^4.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "test:e2e": "cypress run",
+    "test:e2e:dev": "cypress open"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

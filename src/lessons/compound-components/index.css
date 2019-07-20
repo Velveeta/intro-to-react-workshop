@@ -1,0 +1,18 @@
+.magnify {
+  transition: transform ease-in-out 0.25s;
+  transform-origin: left;
+}
+
+.magnify:hover {
+  transform: scale(2);
+}
+
+.flip > span {
+  display: inline-block;
+  transition: transform ease-in-out 0.5s;
+  transform-origin: center;
+}
+
+.flip:hover > span {
+  transform: rotateX(360deg);
+}

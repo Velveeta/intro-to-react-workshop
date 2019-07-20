@@ -1,0 +1,13 @@
+.theremin {
+  background-color: #fff;
+  border: 1px solid #fff;
+  cursor: crosshair;
+  font-size: 10px;
+  height: 200px;
+  margin: 10px;
+  width: 200px;
+}
+
+.theremin.no-tone {
+  background-color: #000;
+}

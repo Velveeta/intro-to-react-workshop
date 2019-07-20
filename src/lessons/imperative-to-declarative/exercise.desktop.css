@@ -1,0 +1,8 @@
+.grid {
+  background-color: #fff;
+}
+
+.grid td.email {
+  word-wrap: break-word;
+  word-break: break-all;
+}

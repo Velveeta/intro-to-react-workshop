@@ -1,0 +1,7 @@
+.dropdown-item {
+  white-space: nowrap;
+}
+
+.lessons-dropdown {
+  flex-basis: 100%;
+}

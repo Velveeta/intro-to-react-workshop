@@ -1,0 +1,11 @@
+.form-example .row {
+  width: 100%;
+}
+
+.form-example .row > * {
+  flex-basis: 30%;
+}
+
+.value {
+  flex-basis: 40%;
+}

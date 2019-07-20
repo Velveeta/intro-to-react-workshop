@@ -1,0 +1,40 @@
+.radio-button {
+  width: 200px;
+}
+
+.radio-button button {
+  width: 100%;
+}
+
+.radio-button .icon {
+  display: inline-block;
+  height: 10px;
+  left: -10px;
+  position: relative;
+  top: -4px;
+  width: 10px;
+}
+
+.radio-button.checked .icon::after {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 8 8"%3E%3Ccircle r="3" fill="%2300f"/%3E%3C/svg%3E');
+  content: "";
+  height: 10px;
+  left: 4px;
+  position: absolute;
+  top: 4px;
+  width: 10px;
+}
+
+.radio-button .icon::before {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 8 8"%3E%3Ccircle r="3" fill="%23fff"/%3E%3C/svg%3E');
+  content: "";
+  height: 18px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 18px;
+}
+
+.radio-button + .radio-button {
+  margin-top: 10px;
+}

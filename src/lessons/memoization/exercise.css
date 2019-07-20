@@ -1,0 +1,22 @@
+.memo-tile {
+  background-color: #fff;
+  border-radius: 5px;
+  color: #000;
+  height: 250px;
+  max-width: 45%;
+  overflow-y: auto;
+}
+
+.remove {
+  background-color: lightgray;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: calc(100% - 30px);
+  width: 22px;
+}
+
+.remove:hover {
+  background-color: gray;
+  color: #fff;
+}

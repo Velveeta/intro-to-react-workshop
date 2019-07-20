@@ -1,0 +1,10 @@
+body {
+  color: #fff;
+  min-height: 100vh;
+  background-color: #000;
+  text-align: center;
+}
+
+.modal-body {
+  color: #000;
+}
