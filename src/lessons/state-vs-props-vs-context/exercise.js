@@ -209,9 +209,7 @@ export default Exercise;
 
 
 /**
- * *************************************************************
- * * This section is for the Form component with state updates *
- * *************************************************************
+ * // This section is for the Form component with state updates
  * const MyStatefulForm = class extends React.Component {
  *   state = {
  *     email: '',
@@ -239,9 +237,7 @@ export default Exercise;
  *   }
  * };
  *
- * ************************************************************
- * * This section is for the Form component with prop updates *
- * ************************************************************
+ * // This section is for the Form component with prop updates
  * const MyFormWithProps = ({
  *   email,
  *   firstName,
@@ -313,9 +309,7 @@ export default Exercise;
  *   }
  * };
  *
- * ***************************************************************
- * * This section is for the Form component with context updates *
- * ***************************************************************
+ * // This section is for the Form component with context updates
  * const { Consumer, Provider } = React.createContext();
  *
  * const FormProvider = class extends React.Component {

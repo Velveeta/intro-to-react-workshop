@@ -1,32 +1,34 @@
 import { BrowserRouter, Route } from "react-router-dom";
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 
-import ComponentBasedDevelopmentLesson from './lessons/component-based-development';
-import ClassVsFunctionBasedComponentsLesson from './lessons/class-vs-function-based-components';
-import CompoundComponentsLesson from './lessons/compound-components';
-import ImperativeToDeclarativeLesson from './lessons/imperative-to-declarative';
-import ControllingComponentsLesson from './lessons/controlling-form-components';
-import MemoizationLesson from './lessons/memoization';
 import Page from './components/page';
-import StateManagementWithReduxLesson from './lessons/state-management-with-redux';
-import StateVsPropsVsContext from './lessons/state-vs-props-vs-context';
-import TestingReactComponents from './lessons/testing-react-components';
 
-import Home from './home';
+const ComponentBasedDevelopmentLesson = lazy(() => import('./lessons/component-based-development'));
+const ClassVsFunctionBasedComponentsLesson = lazy(() => import('./lessons/class-vs-function-based-components'));
+const CompoundComponentsLesson = lazy(() => import('./lessons/compound-components'));
+const Home = lazy(() => import('./home'));
+const ImperativeToDeclarativeLesson = lazy(() => import('./lessons/imperative-to-declarative'));
+const ControllingComponentsLesson = lazy(() => import('./lessons/controlling-form-components'));
+const MemoizationLesson = lazy(() => import('./lessons/memoization'));
+const StateManagementWithReduxLesson = lazy(() => import('./lessons/state-management-with-redux'));
+const StateVsPropsVsContext = lazy(() => import('./lessons/state-vs-props-vs-context'));
+const TestingReactComponents = lazy(() => import('./lessons/testing-react-components'));
 
 const Router = () => (
   <BrowserRouter>
     <Page>
-      <Route exact path="/" component={Home} />
-      <Route path="/component-based-development" component={ComponentBasedDevelopmentLesson} />
-      <Route path="/class-vs-function-based-components" component={ClassVsFunctionBasedComponentsLesson} />
-      <Route path="/compound-components" component={CompoundComponentsLesson} />
-      <Route path="/controlling-form-components" component={ControllingComponentsLesson} />
-      <Route path="/state-vs-props-vs-context" component={StateVsPropsVsContext} />
-      <Route path="/state-management-with-redux" component={StateManagementWithReduxLesson} />
-      <Route path="/memoization" component={MemoizationLesson} />
-      <Route path="/imperative-to-declarative" component={ImperativeToDeclarativeLesson} />
-      <Route path="/testing-react-components" component={TestingReactComponents} />
+      <Suspense fallback={null}>
+        <Route exact path="/" component={Home} />
+        <Route path="/component-based-development" component={ComponentBasedDevelopmentLesson} />
+        <Route path="/class-vs-function-based-components" component={ClassVsFunctionBasedComponentsLesson} />
+        <Route path="/compound-components" component={CompoundComponentsLesson} />
+        <Route path="/controlling-form-components" component={ControllingComponentsLesson} />
+        <Route path="/state-vs-props-vs-context" component={StateVsPropsVsContext} />
+        <Route path="/state-management-with-redux" component={StateManagementWithReduxLesson} />
+        <Route path="/memoization" component={MemoizationLesson} />
+        <Route path="/imperative-to-declarative" component={ImperativeToDeclarativeLesson} />
+        <Route path="/testing-react-components" component={TestingReactComponents} />
+      </Suspense>
     </Page>
   </BrowserRouter>
 );

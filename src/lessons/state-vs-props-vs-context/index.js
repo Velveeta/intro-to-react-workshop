@@ -3,9 +3,11 @@ import React from 'react';
 import { useRegisterNavLink } from '../../components/navigation/hooks';
 import CodeBlock from '../../components/code-block';
 import ExerciseSandbox from '../../components/exercise-sandbox';
+import ExternalLink from '../../components/external-link';
 import FilePath from '../../components/file-path';
 import Highlight from '../../components/highlight';
 import Lesson from '../../components/lesson';
+import NavigationFooter from '../../components/navigation/footer';
 
 import Exercise from './exercise';
 import Tips from './tips';
@@ -19,10 +21,10 @@ const StateVsPropsVsContextLesson = () => {
     <Lesson tips={<Tips />}>
       <h1>State vs Props vs Context</h1>
       <div className="mt-4 text-justify">
-        React offers three traditional methods for housing and passing data both within a component and to descendant components: state, props, and context. The new Hooks API now offers a 4th method, but will be covered in another lesson. State, props, and context can all be passed as any Javascript data type, from primitives to more complex data types like objects, arrays, functions, and regular expressions.
+        React offers three traditional methods for housing and passing data both within a component and to descendant components: state, props, and context. The new Hooks API now offers a <ExternalLink href="https://reactjs.org/docs/hooks-reference.html#usestate">useState</ExternalLink> function, but will be covered in another lesson. State, props, and context can all be passed as any Javascript data type, from primitives to more complex data types like objects, arrays, functions, and regular expressions.
       </div>
       <div className="mt-4 text-justify">
-        State is useful for housing data within a component, either for use by that component itself, passing down to its children, or both. React offers a <Highlight>setState</Highlight> function for use within components, which will set one or more state properties and cause a render cycle to be triggered, but only for that component downward in the component tree. Optionally, it takes a second parameter, a callback, to be invoked once any changes have been flushed out to the DOM.
+        State is useful for housing data that originates within a component, either for use by that component itself, for passing down to its children as props, or both. React offers a <Highlight>setState</Highlight> function for use within components, which will set one or more state properties and cause a render cycle to be triggered, but only for that component downward in the component tree. Optionally, it takes a second parameter, in the form of a callback function, to be invoked once any changes have been flushed out to the DOM.
       </div>
       <div className="mt-4 text-justify">
         <CodeBlock>{`const MyStatefulComponent = class extends React.Component {
@@ -55,7 +57,7 @@ const StateVsPropsVsContextLesson = () => {
 };`}</CodeBlock>
       </div>
       <div className="mt-4 text-justify">
-        Props are parameters received from the parent component, which cannot be modified directly by the receiving component. They can be copied into other local variables for modification and use, but the props object itself is frozen by React. Whenever props are updated at higher levels in the component tree, they will automatically bubble their way back down to the receiving component with the updated values. One problem with using props to pass data is that there's a strict parent/child relationship between passer and receiver. If you need to get some prop(s) from the current component to another component 2 or more layers down in the tree, you have to do what's commonly referred to as <Highlight>prop-drilling</Highlight>. You have to pass props from component A to B, and then B to C, and so forth until you reach your destination. The problem with this method is that it overcomplicates the APIs of the components in between, as they now have to have knowledge of props that have no meaning to them other than to pass on to their own children.
+        Props are parameters received from a parent component, which cannot be modified directly by the receiving component. They can be copied into other local variables for modification and use, but the props object itself is frozen by React. Whenever props are updated at higher levels in the component tree, they will automatically bubble their way back down to the receiving component, which will be re-rendered with the updated values. One problem with using props to pass data is that there's a strict parent/child relationship between passer and receiver. If you need to get some prop(s) from the current component to another component 2 or more layers down in the tree, you have to do what's commonly referred to as <Highlight>prop-drilling</Highlight>. You have to pass props from component A to B, and then B to C, and so forth until you reach your destination. The problem with this method is that it overcomplicates the APIs of the components in between, as they now have to have knowledge of props that have no meaning to them other than to pass on to their own children. You can mitigate this somewhat by using spread syntax to pass all props down to child components, but you'll run a risk of potential name collisions that could overwrite intended values.
       </div>
       <div className="mt-4 text-justify">
         <CodeBlock>{`const MyComponentWithProps = ({ onClick, show }) => (
@@ -85,12 +87,18 @@ const MyStatefulComponent = class extends React.Component {
   };
 
   render() {
-    return <MyComponentWithProps onClick={this._onClick} show={this.state.show} />;
+    return (
+      <MyComponentWithProps
+        {...this.props}
+        onClick={this._onClick}
+        show={this.state.show}
+      />
+    );
   }
 };`}</CodeBlock>
       </div>
       <div className="mt-4 text-justify">
-        The built-in solution to this issue is the React context API. It uses a provider pattern to establish a Provider/Consumer pair of components to be used in your views. The Provider component allows you to set a <Highlight>value</Highlight> into context, which can be of any data type, and if desired, additional Providers can be nested below that level in the component tree. Any components that have need of accessing that context data simply embed a Consumer component in their view, and will receive the context value from the closest Provider above them in the component tree. This means you don't have to prop-drill anything from higher-level to lower-level components, you simply wrap them where you need the data. The Consumer component takes its children in the form of a function, which it invokes and passes the <Highlight>value</Highlight> prop to as an input parameter, and from which expects to receive some form of valid React node as a return value.
+        The built-in solution to this issue is the React context API. It uses a provider pattern to establish a Provider/Consumer pair of components to be used in your views. The Provider component allows you to set a <Highlight>value</Highlight> into context, which can be of any data type, and if desired, additional Providers for the samee Consumer type can be nested below that level in the component tree. Any components that have need of accessing that context data simply embed a Consumer component in their view, and will receive the context value from the closest Provider above them in the component tree. This means you don't have to prop-drill anything from higher-level to lower-level components, you simply wrap them where you need the data. The Consumer component takes its children in the form of a function, which it invokes and passes the <Highlight>value</Highlight> prop to as an input parameter, and from which it expects to receive some form of valid React node as a return value. The new Hooks API offers a <ExternalLink href="https://reactjs.org/docs/hooks-reference.html#usecontext">useContext</ExternalLink> function that makes it even easier to consume data from context, but that will be covered in a different lesson.
       </div>
       <div className="mt-4 text-justify">
         <CodeBlock>{`const MyContextConsumer = () => (
@@ -131,13 +139,14 @@ const MyContextProvider = class extends React.Component {
 };`}</CodeBlock>
       </div>
       <div className="mt-4 test-justify">
-        In this lesson's exercise, you'll be implementing some controlled form fields using the 3 different methods discussed on this page. None of these fields actually work right now, as they're all receiving a value prop that defaults to an empty string, meaning they expect to be controlled by an <Highlight>onChange</Highlight> handler. It will be up to you to implement that onChange handler for each type of form controller, and use the relevant method (state, props, or context) to get that handler and the associated form field data down to the fields themselves. Open the project's <FilePath>src/lessons/state-vs-props-vs-context/exercise.js</FilePath> file to start applying these 3 different methodologies to your forms, and see which ones feel better in which situations.
+        In this lesson's exercise, you'll be implementing some controlled form fields using the 3 different methods discussed on this page: state, props, and context. None of these fields actually work right now, as they're all receiving a value prop that defaults to an empty string, meaning they expect to be controlled by an <Highlight>onChange</Highlight> handler of some kind. It will be up to you to implement that onChange handler for each type of form controller, and use the relevant method (state, props, or context) to get that handler and the associated form field data down to the fields themselves. Open the project's <FilePath>src/lessons/state-vs-props-vs-context/exercise.js</FilePath> file to start applying these 3 different methodologies to your forms, and see which ones feel better in which situations.
       </div>
       <div className="mt-4 text-justify">
         <ExerciseSandbox>
           <Exercise />
         </ExerciseSandbox>
       </div>
+      <NavigationFooter lesson="state-vs-props-vs-context" />
     </Lesson>
   );
 };

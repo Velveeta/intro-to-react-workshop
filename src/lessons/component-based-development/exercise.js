@@ -279,35 +279,35 @@ export default Exercise;
 
 
 /**
- * This set of components is by no means the only way that these components can or should
- * be separated, but does demonstrate a good way to decompose them. Since the state in the
- * original example wasn't being persisted anywhere, but was rather initial state, it could
- * actually be moved down to lower level components. This allows us to create instance-bound
- * callbacks that keep consistent references from one render cycle to the next, which helps
- * with certain optimizations learned in a later lesson.
+ * // This set of components is by no means the only way that these components can or should
+ * // be separated, but does demonstrate a good way to decompose them. Since the state in the
+ * // original example wasn't being persisted anywhere, but was rather initial state, it could
+ * // actually be moved down to lower level components. This allows us to create instance-bound
+ * // callbacks that keep consistent references from one render cycle to the next, which helps
+ * // with certain optimizations learned in a later lesson.
  *
- * The PageCounter component can be completely self-contained, and is easily migrated out
- * of the main component and into its own, which can now be shared to other pages if that's
- * something we desire at a later time.
+ * // The PageCounter component can be completely self-contained, and is easily migrated out
+ * // of the main component and into its own, which can now be shared to other pages if that's
+ * // something we desire at a later time.
  *
- * Each Item now has its own component, which means we can update styles or behaviors for
- * all Items in one place and at one time. It can also house the state for each Item's vote
- * count, moving that state down from higher level components. The AddItemField components
- * also have their own definitions now, which track their own text input refs, without those
- * needing to be passed down to them. With those pieces moved out, the Section component can
- * be drastically reduced in size.
+ * // Each Item now has its own component, which means we can update styles or behaviors for
+ * // all Items in one place and at one time. It can also house the state for each Item's vote
+ * // count, moving that state down from higher level components. The AddItemField components
+ * // also have their own definitions now, which track their own text input refs, without those
+ * // needing to be passed down to them. With those pieces moved out, the Section component can
+ * // be drastically reduced in size.
  *
- * Now we can create new components for ScifiSection and FantasySection, which are one of the
- * only places holding state, for their initial list of titles. They pass an onAddItem callback
- * down to lower-level components in order to be alerted when an item is being added to their
- * section, but other than that, their render logic is pretty simple.
+ * // Now we can create new components for ScifiSection and FantasySection, which are one of the
+ * // only places holding state, for their initial list of titles. They pass an onAddItem callback
+ * // down to lower-level components in order to be alerted when an item is being added to their
+ * // section, but other than that, their render logic is pretty simple.
  *
- * Finally, with all of that moved out of the main MyMonolithicView component, that component
- * can be collapsed down to almost nothing, and since it isn't needing to hold state anymore,
- * it can be changed from a class-based component to a functional one instead. Testing it
- * also become much easier at this point, since we really only need to check that it renders
- * the other components we're expecting, and not whether those components behave as expected,
- * since those testing concerns can be handled within the test suites for those components.
+ * // Finally, with all of that moved out of the main MyMonolithicView component, that component
+ * // can be collapsed down to almost nothing, and since it isn't needing to hold state anymore,
+ * // it can be changed from a class-based component to a functional one instead. Testing it
+ * // also become much easier at this point, since we really only need to check that it renders
+ * // the other components we're expecting, and not whether those components behave as expected,
+ * // since those testing concerns can be handled within the test suites for those components.
  *
  * const AddItemField = class extends React.Component {
  *   _ref = React.createRef();

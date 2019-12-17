@@ -117,6 +117,15 @@ const Job = class extends React.Component {
   }
 };
 
+/**
+ * This component needs some TLC! Refactor it so that its children don't
+ * mount (and thus, start processing) until each previous child in the list
+ * has signaled that it's completed. This is going to involve combining a
+ * few different aspects of React development, including React.Children.map
+ * or React.Children.toArray, React.cloneElement, and some way of tracking
+ * how many items have finished processing, so that you know which components
+ * to mount and activate.
+ **/
 const JobPipeline = class extends React.Component {
   render() {
     return this.props.children;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 const Context = React.createContext();
 const { Provider } = Context;
@@ -8,7 +8,7 @@ const LinksProvider = ({ children }) => {
     'https://github.com/Velveeta/intro-to-react-workshop': 'GitHub',
   });
 
-  const value = {
+  const value = useMemo(() => ({
     addNavLink: (url, title) => {
       setNavLinks(currentNavLinks => ({
         ...currentNavLinks,
@@ -28,7 +28,7 @@ const LinksProvider = ({ children }) => {
         }, {})
       );
     },
-  };
+  }), [navLinks, setNavLinks]);
 
   return (
     <Provider value={value}>

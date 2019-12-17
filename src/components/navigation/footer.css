@@ -1,0 +1,20 @@
+.navigation-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.navigation-footer .next {
+  flex-basis: 100%;
+  text-align: right;
+}
+
+.navigation-footer .previous {
+  flex-basis: 50%;
+  text-align: left;
+}
+
+.navigation-footer .previous + .next {
+  flex-basis: 50%;
+}
